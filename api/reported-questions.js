@@ -71,7 +71,7 @@ export default async function handler(req, res) {
       if (!result.ok) return send(res, 400, result)
       const written = await writeGithubJson(
         result.list,
-        `Add reported question ${result.item.id}`,
+        `Add reported question ${result.item.id} [skip vercel]`,
       )
       if (!written.ok) return send(res, 502, written)
       return send(res, 201, {
@@ -93,7 +93,7 @@ export default async function handler(req, res) {
       }
       const written = await writeGithubJson(
         result.list,
-        `Delete reported question ${body.id}`,
+        `Delete reported question ${body.id} [skip vercel]`,
       )
       if (!written.ok) return send(res, 502, written)
       return send(res, 200, { ok: true, list: result.list })
