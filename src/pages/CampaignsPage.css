@@ -1,0 +1,521 @@
+.campaigns-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 28px 24px 48px;
+}
+
+.campaigns-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.campaigns-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.campaigns-subtitle {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  max-width: 520px;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #0f2137;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 18px;
+  font: inherit;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.campaigns-advertiser-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(0, 170, 255, 0.35);
+  background: linear-gradient(
+    135deg,
+    rgba(0, 170, 255, 0.14),
+    rgba(167, 139, 250, 0.08)
+  );
+  box-shadow: inset 0 0 0 1px rgba(0, 170, 255, 0.08);
+}
+
+.campaigns-advertiser-bar.is-active {
+  border-color: rgba(0, 170, 255, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(0, 170, 255, 0.22),
+    inset 0 0 0 1px rgba(0, 170, 255, 0.12);
+}
+
+.campaigns-advertiser-bar-copy {
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.campaigns-advertiser-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #9ad8ff;
+}
+
+.campaigns-advertiser-hint {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 420px;
+  line-height: 1.4;
+}
+
+.campaigns-advertiser-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 280px;
+  justify-content: flex-end;
+}
+
+.campaigns-advertiser-field {
+  flex: 1 1 240px;
+  max-width: 360px;
+  min-width: 200px;
+}
+
+.campaigns-advertiser-field select {
+  width: 100%;
+  background: rgba(10, 16, 24, 0.85);
+  border: 1px solid rgba(0, 170, 255, 0.45);
+  border-radius: 12px;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 14px;
+  outline: none;
+}
+
+.campaigns-advertiser-field select:focus {
+  border-color: rgba(0, 170, 255, 0.75);
+  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.18);
+}
+
+.campaigns-advertiser-bar.is-active .campaigns-advertiser-field select {
+  border-color: rgba(0, 170, 255, 0.7);
+  background: rgba(0, 170, 255, 0.12);
+}
+
+.campaigns-advertiser-clear {
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(15, 22, 32, 0.65);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 10px 14px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.campaigns-advertiser-clear:hover {
+  border-color: rgba(0, 170, 255, 0.45);
+}
+
+.campaigns-payout-bar {
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid rgba(234, 179, 8, 0.28);
+  background: linear-gradient(
+    135deg,
+    rgba(234, 179, 8, 0.08),
+    rgba(0, 170, 255, 0.05)
+  );
+}
+
+.campaigns-payout-bar-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.campaigns-payout-label {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #fde68a;
+}
+
+.campaigns-payout-hint {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+  max-width: 520px;
+}
+
+.campaigns-payout-clear {
+  flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 22, 32, 0.55);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.campaigns-payout-clear:hover {
+  border-color: rgba(0, 170, 255, 0.4);
+}
+
+.campaigns-payout-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.payout-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(15, 22, 32, 0.7);
+  color: var(--text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.payout-chip:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.payout-chip.active {
+  box-shadow: 0 0 0 1px rgba(0, 170, 255, 0.35);
+  border-color: rgba(0, 170, 255, 0.55);
+  background: rgba(0, 170, 255, 0.12);
+}
+
+.payout-chip.unpaid.active {
+  border-color: rgba(234, 179, 8, 0.55);
+  background: rgba(234, 179, 8, 0.14);
+  box-shadow: 0 0 0 1px rgba(234, 179, 8, 0.28);
+}
+
+.payout-chip.paid.active {
+  border-color: rgba(34, 197, 94, 0.55);
+  background: rgba(34, 197, 94, 0.12);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.28);
+}
+
+.payout-chip.na.active {
+  border-color: rgba(148, 163, 184, 0.45);
+  background: rgba(148, 163, 184, 0.1);
+  box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.2);
+}
+
+.payout-chip-count {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--muted);
+}
+
+.payout-chip.active .payout-chip-count {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.campaigns-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.field-emphasis select {
+  border-color: rgba(234, 179, 8, 0.45);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 160px;
+}
+
+.field.grow {
+  flex: 1 1 240px;
+}
+
+.field span {
+  font-size: 12px;
+  color: var(--label);
+}
+
+.field input,
+.field select {
+  background: var(--input);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  padding: 10px 12px;
+  outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+  border-color: var(--accent);
+}
+
+.campaigns-count {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.campaigns-count strong {
+  color: var(--text);
+}
+
+.count-advertiser {
+  color: #9ad8ff;
+}
+
+.count-payout-unpaid {
+  color: #fde68a !important;
+}
+
+.count-payout-paid {
+  color: #86efac !important;
+}
+
+.count-payout-not-due {
+  color: #94a3b8 !important;
+}
+
+.th-sortable {
+  padding: 0 !important;
+}
+
+.th-sort-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+}
+
+.th-sort-btn:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.th-payout.is-sorted .th-sort-btn {
+  color: #fde68a;
+}
+
+.th-sort-icon {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.th-payout.is-sorted .th-sort-icon {
+  color: #fde68a;
+}
+
+.campaigns-table tbody tr.row-unpaid td:first-child {
+  box-shadow: inset 3px 0 0 rgba(234, 179, 8, 0.85);
+}
+
+.linkish-inline {
+  border: none;
+  background: none;
+  color: #7dd3fc;
+  font: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.table-wrap {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: auto;
+  background: var(--panel);
+}
+
+.campaigns-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  min-width: 1080px;
+}
+
+.campaigns-table th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--label);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.campaigns-table td {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.campaigns-table tbody tr:first-child td {
+  border-top: none;
+}
+
+.campaigns-table tbody tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.campaigns-table tbody tr.campaign-row {
+  cursor: pointer;
+}
+
+.campaigns-table tbody tr.campaign-row:hover td {
+  background: rgba(0, 170, 255, 0.06);
+}
+
+.campaigns-table tbody tr.campaign-row:focus-visible {
+  outline: 2px solid rgba(0, 170, 255, 0.45);
+  outline-offset: -2px;
+}
+
+.campaign-name {
+  font-weight: 600;
+}
+
+.schedule {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.mono {
+  font-variant-numeric: tabular-nums;
+}
+
+.empty-cell {
+  text-align: center;
+  color: var(--muted);
+  padding: 36px 16px !important;
+}
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+.type-paid {
+  color: #7dd3fc;
+  background: rgba(0, 170, 255, 0.12);
+  border-color: rgba(0, 170, 255, 0.35);
+}
+
+.type-free {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+
+.type-admin {
+  color: #c4b5fd;
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+.status-draft {
+  color: var(--muted);
+}
+
+.status-scheduled {
+  color: #fcd34d;
+  background: rgba(234, 179, 8, 0.1);
+  border-color: rgba(234, 179, 8, 0.35);
+}
+
+.status-live {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+
+.status-ended {
+  color: #fda4af;
+  background: rgba(244, 63, 94, 0.1);
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+.payout-na {
+  color: var(--muted);
+}
+
+.payout-paid {
+  color: #86efac;
+  background: rgba(34, 197, 94, 0.12);
+  border-color: rgba(34, 197, 94, 0.35);
+}
+
+.payout-unpaid {
+  color: #fde68a;
+  background: rgba(234, 179, 8, 0.12);
+  border-color: rgba(234, 179, 8, 0.35);
+}

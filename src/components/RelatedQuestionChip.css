@@ -1,0 +1,126 @@
+.rq-chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 6px 10px 6px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(242, 181, 68, 0.55);
+  background: linear-gradient(
+    135deg,
+    rgba(242, 181, 68, 0.28),
+    rgba(251, 146, 60, 0.14)
+  );
+  color: #fbbf24;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(242, 181, 68, 0.18);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.rq-chip:hover {
+  border-color: rgba(242, 181, 68, 0.85);
+  background: linear-gradient(
+    135deg,
+    rgba(242, 181, 68, 0.36),
+    rgba(251, 146, 60, 0.2)
+  );
+  box-shadow: 0 0 16px rgba(242, 181, 68, 0.28);
+  transform: translateY(-1px);
+}
+
+.rq-chip-pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f2b544;
+  box-shadow: 0 0 0 0 rgba(242, 181, 68, 0.55);
+  animation: rq-pulse 1.8s ease-out infinite;
+}
+
+@keyframes rq-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 181, 68, 0.55);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(242, 181, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(242, 181, 68, 0);
+  }
+}
+
+.rq-chip-id {
+  letter-spacing: 0.03em;
+}
+
+.rq-chip-label {
+  color: #fde68a;
+  font-weight: 600;
+}
+
+.rq-chip:hover .rq-chip-label {
+  color: #fff7d6;
+}
+
+.rq-chip.is-resolved .rq-chip-label {
+  color: var(--muted);
+}
+
+.rq-chip.is-resolved:hover .rq-chip-label {
+  color: var(--text);
+}
+
+.rq-chip.is-resolved {
+  border-color: rgba(95, 211, 155, 0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(95, 211, 155, 0.14),
+    rgba(22, 34, 44, 0.4)
+  );
+  color: #9ae6b4;
+  box-shadow: none;
+}
+
+.rq-chip.is-resolved:hover {
+  border-color: rgba(95, 211, 155, 0.65);
+  background: linear-gradient(
+    135deg,
+    rgba(95, 211, 155, 0.22),
+    rgba(22, 34, 44, 0.5)
+  );
+  box-shadow: none;
+}
+
+.rq-chip.is-resolved .rq-chip-pulse {
+  background: #5fd39b;
+  box-shadow: 0 0 0 0 rgba(95, 211, 155, 0.55);
+  animation: none;
+}
+
+.field.has-question {
+  position: relative;
+}
+
+.field.has-question.is-question-focus {
+  outline: 2px solid rgba(242, 181, 68, 0.55);
+  outline-offset: 4px;
+  border-radius: 12px;
+  animation: rq-focus-glow 1.4s ease;
+}
+
+@keyframes rq-focus-glow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(242, 181, 68, 0.35);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgba(242, 181, 68, 0);
+  }
+}

@@ -1,0 +1,36 @@
+:root {
+  --bg: #141d29;
+  --sidebar: #101820;
+  --panel: #1a2533;
+  --input: #141d29;
+  --border: #2c3848;
+  --text: #e8edf3;
+  --label: #c9d4e0;
+  --muted: #97a6b8;
+  --accent: #00aaff;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
