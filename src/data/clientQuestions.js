@@ -318,10 +318,16 @@ export const CLIENT_QUESTIONS = [
     id: 'Q04.5',
     sectionId: '04',
     title: 'Mixing legacy Ad Packs and Campaigns on one screen',
+    status: 'resolved',
     source:
       '04 (campaigns instead of new Ad Packs; existing keep running); 03',
     summary:
-      'Same screen: morning Ad Pack + evening Campaign, or exclusive paths?',
+      'Screens with any scheduled Ad Pack stay out of campaign inventory until those Ad Packs finish; Choose screens shows only screens with no scheduled Ad Packs.',
+    link: {
+      view: 'builder',
+      step: 2,
+      label: 'Campaign Builder · Choose screens',
+    },
     body: [
       {
         type: 'p',
@@ -338,6 +344,12 @@ export const CLIENT_QUESTIONS = [
       {
         type: 'p',
         text: 'If exclusivity: what switches it (first campaign booking / admin flag / last Ad Pack ends)?',
+      },
+    ],
+    decision: [
+      {
+        type: 'p',
+        text: 'Screen exclusivity by Ad Pack schedule — screens that have any active / scheduled Ad Packs are not selectable for campaigns until all of those scheduled Ad Packs have finished. In Campaign Builder → Choose screens, only screens with no scheduled Ad Packs are shown.',
       },
     ],
   },
@@ -569,6 +581,30 @@ export const CLIENT_QUESTIONS = [
           'Where the difference goes — stay with Ad Space, or refund / credit the advertiser?',
           'Extra company penalty beyond matching under-delivery? If yes: how calculated, and who gets it?',
         ],
+      },
+    ],
+  },
+  {
+    id: 'Q05.3',
+    sectionId: '05',
+    title: 'Finance (full definition needed)',
+    source:
+      '04 (Finance / payables — Task 6 not finalized); 05 (Earnings); Campaign Detail → Finance',
+    summary:
+      'Finance is not finalized — define everything needed for this area so we can build it.',
+    link: {
+      view: 'detail',
+      tab: 'finance',
+      label: 'Campaign Detail · Finance',
+    },
+    body: [
+      {
+        type: 'p',
+        text: 'Finance is not finalized. Please define everything we need for this area so we can build it correctly — including structure, invoices (how they are created and where they live), Mark as Paid, whether a separate finance/invoices surface is needed beyond the campaign Finance tab, any Odoo (or other) integration, and any other finance rules or flows that matter.',
+      },
+      {
+        type: 'p',
+        text: 'Surface (current sketch): Campaign Detail → Finance.',
       },
     ],
   },

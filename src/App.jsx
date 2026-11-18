@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import CampaignsPage from './pages/CampaignsPage'
 import CampaignBuilder from './pages/builder/CampaignBuilder'
 import CampaignDetailPage from './pages/CampaignDetailPage'
@@ -9,11 +9,16 @@ import EarningsPage from './pages/EarningsPage'
 import ScreenUptimePage from './pages/ScreenUptimePage'
 import ScreenDetailPage from './pages/ScreenDetailPage'
 import QuestionsPage from './pages/QuestionsPage'
+import ReportQuestionFab from './components/ReportQuestionFab'
 import {
   ADVERTISERS,
   createAdvertiser,
   normalizeAdvertiserList,
 } from './data/advertisers'
+import {
+  deleteReportedQuestion,
+  fetchReportedQuestions,
+} from './data/reportedQuestions'
 import './App.css'
 
 export default function App() {
@@ -28,6 +33,12 @@ export default function App() {
   )
   /** Deep-link into Client questions (expand + scroll). */
   const [focusQuestionId, setFocusQuestionId] = useState(null)
+  /** Questions page mode: curated client list vs user-reported. */
+  const [questionsTab, setQuestionsTab] = useState('client')
+  /** Reported questions captured from the floating Ask control. */
+  const [reportedQuestions, setReportedQuestions] = useState([])
+  /** Live page/tab context for the report FAB. */
+  const [pageContext, setPageContext] = useState({ view: 'list' })
   /** Deep-link into Campaign Builder (step + field anchor). */
   const [builderNav, setBuilderNav] = useState({ step: 1, anchor: null })
   /** Deep-link into Campaign Detail (tab + field anchor). */
@@ -35,6 +46,22 @@ export default function App() {
     tab: 'overview',
     anchor: null,
   })
+
+  useEffect(() => {
+    if (view === 'builder' || view === 'detail') return
+    setPageContext({ view })
+  }, [view])
+
+  useEffect(() => {
+    let cancelled = false
+    fetchReportedQuestions().then((result) => {
+      if (cancelled || !result.ok) return
+      setReportedQuestions(result.list || [])
+    })
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   const onCampaignsNav =
     view === 'list' || view === 'builder' || view === 'detail'
@@ -100,6 +127,13 @@ export default function App() {
   }
 
   const openQuestion = useCallback((questionId) => {
+    setQuestionsTab('client')
+    setFocusQuestionId(questionId)
+    setView('questions')
+  }, [])
+
+  const openReportedQuestion = useCallback((questionId) => {
+    setQuestionsTab('reported')
     setFocusQuestionId(questionId)
     setView('questions')
   }, [])
@@ -123,6 +157,20 @@ export default function App() {
       return
     }
     setView(link.view)
+  }, [])
+
+  const handleReportSubmitted = useCallback(
+    (item, list) => {
+      if (list) setReportedQuestions(list)
+      openReportedQuestion(item.id)
+    },
+    [openReportedQuestion],
+  )
+
+  const handleDeleteReported = useCallback(async (id, password) => {
+    const result = await deleteReportedQuestion(id, password)
+    if (result.ok) setReportedQuestions(result.list || [])
+    return result
   }, [])
 
   const clearQuestionFocus = useCallback(() => {
@@ -195,6 +243,7 @@ export default function App() {
             className={`nav-item ${onQuestionsNav ? 'active' : ''}`}
             onClick={() => {
               setFocusQuestionId(null)
+              setQuestionsTab('client')
               setView('questions')
             }}
           >
@@ -210,6 +259,7 @@ export default function App() {
             focusAnchor={builderNav.anchor}
             onFocusConsumed={clearBuilderFocus}
             onOpenQuestion={openQuestion}
+            onPageContext={setPageContext}
             advertisers={advertisers}
             onChangeAdvertisers={setAdvertisers}
           />
@@ -221,6 +271,7 @@ export default function App() {
             focusAnchor={detailNav.anchor}
             onFocusConsumed={clearDetailFocus}
             onOpenQuestion={openQuestion}
+            onPageContext={setPageContext}
             advertisers={advertisers}
             onChangeAdvertisers={setAdvertisers}
           />
@@ -250,9 +301,13 @@ export default function App() {
           />
         ) : view === 'questions' ? (
           <QuestionsPage
+            activeTab={questionsTab}
+            onTabChange={setQuestionsTab}
             focusQuestionId={focusQuestionId}
             onFocusConsumed={clearQuestionFocus}
             onOpenLinkedPage={openLinkedPage}
+            reportedQuestions={reportedQuestions}
+            onDeleteReported={handleDeleteReported}
           />
         ) : (
           <CampaignsPage
@@ -261,6 +316,11 @@ export default function App() {
           />
         )}
       </main>
+      <ReportQuestionFab
+        pageContext={pageContext}
+        onSubmitted={handleReportSubmitted}
+        hidden={view === 'questions'}
+      />
     </div>
   )
 }

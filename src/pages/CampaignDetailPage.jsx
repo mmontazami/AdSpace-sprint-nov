@@ -110,6 +110,7 @@ export default function CampaignDetailPage({
   focusAnchor = null,
   onFocusConsumed,
   onOpenQuestion,
+  onPageContext,
   advertisers: advertisersProp,
   onChangeAdvertisers,
 }) {
@@ -159,6 +160,10 @@ export default function CampaignDetailPage({
   useEffect(() => {
     if (!visibleTabs.some((t) => t.id === tab)) setTab('overview')
   }, [visibleTabs, tab])
+
+  useEffect(() => {
+    onPageContext?.({ view: 'detail', tab })
+  }, [tab, onPageContext])
 
   function patchDraft(partial) {
     setDraft((prev) => {

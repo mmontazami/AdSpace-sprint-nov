@@ -105,6 +105,19 @@
   color: #9ae6b4;
 }
 
+.q-stat-reported {
+  border-color: rgba(196, 165, 255, 0.4);
+  background: rgba(196, 165, 255, 0.1);
+}
+
+.q-stat-reported .q-stat-value {
+  color: #c4a5ff;
+}
+
+.q-stat-reported .q-stat-label {
+  color: #ddd0ff;
+}
+
 .q-stat-value {
   display: block;
   font-size: 26px;
@@ -122,6 +135,41 @@
   letter-spacing: 0.05em;
   text-transform: uppercase;
   color: var(--muted);
+}
+
+/* —— Mode tabs (Client vs Reported) —— */
+.q-mode-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.q-mode-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.q-mode-tab.active {
+  border-color: rgba(79, 195, 255, 0.45);
+  background: rgba(79, 195, 255, 0.12);
+  color: #9fdfff;
+}
+
+.q-mode-tab.reported.active {
+  border-color: rgba(196, 165, 255, 0.5);
+  background: rgba(196, 165, 255, 0.12);
+  color: #dccbff;
 }
 
 /* —— Filters —— */
@@ -303,6 +351,142 @@
 .q-card.is-open:not(.is-status-open):not(.is-resolved) {
   border-color: color-mix(in srgb, var(--q-accent, var(--accent)) 45%, var(--border));
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--q-accent, var(--accent)) 18%, transparent);
+}
+
+.q-card-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: start;
+  gap: 8px;
+}
+
+.q-card-row .q-card-trigger {
+  min-width: 0;
+}
+
+.q-delete-btn {
+  margin: 14px 14px 0 0;
+  padding: 7px 10px;
+  border-radius: 9px;
+  border: 1px solid rgba(242, 120, 120, 0.35);
+  background: rgba(242, 120, 120, 0.08);
+  color: #f2a7a7;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.q-delete-btn:hover {
+  border-color: rgba(242, 120, 120, 0.55);
+  background: rgba(242, 120, 120, 0.16);
+}
+
+.q-delete-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.q-delete-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(6, 10, 16, 0.6);
+  cursor: pointer;
+}
+
+.q-delete-panel {
+  position: relative;
+  width: min(400px, 100%);
+  padding: 20px 18px 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(242, 120, 120, 0.3);
+  background: linear-gradient(160deg, rgba(42, 28, 32, 0.98), rgba(18, 22, 28, 0.98));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+}
+
+.q-delete-panel h2 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.q-delete-copy {
+  margin: 0 0 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.q-delete-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.q-delete-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.q-delete-field input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(10, 16, 24, 0.7);
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+}
+
+.q-delete-field input:focus {
+  outline: none;
+  border-color: rgba(242, 120, 120, 0.55);
+}
+
+.q-delete-error {
+  margin: 0;
+  font-size: 13px;
+  color: #f2a7a7;
+}
+
+.q-delete-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.q-delete-btn-ghost,
+.q-delete-btn-danger {
+  padding: 9px 14px;
+  border-radius: 10px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.q-delete-btn-ghost {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+}
+
+.q-delete-btn-danger {
+  border: 1px solid rgba(242, 120, 120, 0.45);
+  background: rgba(242, 120, 120, 0.16);
+  color: #f2a7a7;
 }
 
 .q-card-trigger {
@@ -601,6 +785,11 @@
   font-size: 14px;
   line-height: 1.6;
   color: var(--label);
+}
+
+.q-body-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
 }
 
 .q-body-list {

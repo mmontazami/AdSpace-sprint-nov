@@ -159,6 +159,7 @@ export default function CampaignBuilder({
   focusAnchor = null,
   onFocusConsumed,
   onOpenQuestion,
+  onPageContext,
   advertisers: advertisersProp,
   onChangeAdvertisers,
 }) {
@@ -179,6 +180,10 @@ export default function CampaignBuilder({
   useEffect(() => {
     if (initialStep) setStep(initialStep)
   }, [initialStep])
+
+  useEffect(() => {
+    onPageContext?.({ view: 'builder', step })
+  }, [step, onPageContext])
 
   const visibleSteps = useMemo(
     () => STEPS.filter((s) => !(s.paidOnly && draft.type !== 'Paid')),
